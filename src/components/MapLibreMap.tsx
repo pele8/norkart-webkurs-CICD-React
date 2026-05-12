@@ -1,12 +1,16 @@
 import { LngLat, type MapLayerMouseEvent } from 'maplibre-gl';
 import 'maplibre-gl/dist/maplibre-gl.css';
-import { RMap, useMap } from 'maplibre-react-components';
+import { RMap, useMap, RMarker } from 'maplibre-react-components';
 import { getHoydeFromPunkt } from '../api/getHoydeFromPunkt';
 import { useEffect, useState } from 'react';
 import { Overlay } from './Overlay';
 import DrawComponent from './DrawComponent';
+import { WeatherData } from './WeatherData';
+
 
 const TRONDHEIM_COORDS: [number, number] = [10.40565401, 63.4156575];
+// const mountain: [number, number] = [6.4546, 46.1067];
+
 
 export const MapLibreMap = () => {
   const [pointHoyde, setPointHoydeAtPunkt] = useState<number | undefined>(
@@ -36,10 +40,13 @@ export const MapLibreMap = () => {
       onClick={onMapClick}
     >
       <Overlay>
-        <h2>Dette er et overlay</h2>
-        <p>Legg til funksjonalitet knyttet til kartet.</p>
+        <div>something</div>
+
       </Overlay>
       <DrawComponent />
+      {<WeatherData />}
+      <RMarker longitude={TRONDHEIM_COORDS[0]} latitude={TRONDHEIM_COORDS[1]} />
+
     </RMap>
   );
 };
